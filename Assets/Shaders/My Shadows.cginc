@@ -97,6 +97,7 @@ InterpolatorsVertex MyShadowVertexProgram (VertexData v) {
 	#endif
 
 	#if VERTEX_DISPLACEMENT
+		_ParallaxStrength = 3.;
 		float displacement = tex2Dlod(_DisplacementMap, float4(i.uv.xy, 0, 0)).g;
 		displacement = (displacement - 0.5) * _DisplacementStrength;
 		v.normal = normalize(v.normal);

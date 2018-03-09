@@ -1,4 +1,4 @@
-﻿Shader "Custom/Displacement"
+﻿Shader "Custom/Noise"
 {
 	Properties
 	{
@@ -14,8 +14,6 @@
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
-			// make fog work
-			#pragma multi_compile_fog
 			
 			#include "UnityCG.cginc"
 
@@ -35,54 +33,36 @@
 			sampler2D _MainTex;
 			float4 _MainTex_ST;
 
-			#define NUM_OCTAVES 16
+			#define PI 3.14159265358979323846
 
-			half3x3 rotX(float a) {
-			    float c = cos(a);
-			    float s = sin(a);
-			    return half3x3(
-	                1, 0, 0,
-	                0, c, -s,
-	                0, s, c
-                );
+			half3 c_scale(float i)
+			{
+			    half3 c = half3(i, i, i);
+			    return c;
 			}
 
-			half3x3 rotY(float a) {
-			    float c = cos(a);
-			    float s = sin(a);
-			    return half3x3(
-		            c, 0, -s,
-		            0, 1, 0,
-		            s, 0, c
-	            );
+			half2 random(half2 st)
+			{
+			    st = mul(half2x2(1., 99., 0., 1.), st);
+				st = frac(sin(st) * 999999.);
+			    return st;
 			}
 
-			float random(half2 pos) {
-			    return frac(sin(dot(pos.xy, half2(12.9898, 78.233))) * 43758.5453123);
+			half2 noise(half2 st)
+			{
+			    return random(floor(st));
 			}
 
-			float noise(half2 pos) {
-			    half2 i = floor(pos);
-			    half2 f = frac(pos);
-			    float a = random(i + half2(0.0, 0.0));
-			    float b = random(i + half2(1.0, 0.0));
-			    float c = random(i + half2(0.0, 1.0));
-			    float d = random(i + half2(1.0, 1.0));
-			    half2 u = f * f * (3.0 - 2.0 * f);
-			    return lerp(a, b, u.x) + (c - a) * u.y * (1.0 - u.x) + (d - b) * u.x * u.y;
+			half2 smooth_h_noise(half2 st)
+			{
+			    return noise(st) * smoothstep(0., 1., frac(st))
+			        + noise(st + half2(-1., 0.)) * (1. -smoothstep(0., 1., frac(st)));
 			}
 
-			float fbm(half2 pos) {
-			    float v = 0.0;
-			    float a = 0.5;
-			    half2 shift = half2(100.0, 100.0);
-			    half2x2 rot = half2x2(cos(0.5), sin(0.5), -sin(0.5), cos(0.5));
-			    for (int i=0; i<NUM_OCTAVES; i++) {
-			        v += a * noise(pos);
-			        pos = mul(rot, pos) * 2 + shift;
-			        a *= 0.5;
-			    }
-			    return v;
+			half2 smooth_noise(half2 st)
+			{
+				return smooth_h_noise(st) * smoothstep(0., 1., frac(mul(half2x2(0., 1., -1., 0), st)))
+			        + smooth_h_noise(st+half2(0., -1.)) * (1. -smoothstep(0., 1., frac(mul(half2x2(0., 1., -1., 0), st))));
 			}
 
 			v2f vert (appdata v)
@@ -96,19 +76,26 @@
 			
 			fixed4 frag (v2f i) : SV_Target
 			{
-			    half2 p = (i.uv * _ScreenParams.xy * 2.0 - _ScreenParams.xy) / min(_ScreenParams.x, _ScreenParams.y);
-			    float t = 0.0, d;
-			    float time = _Time * 15.0;
+				half2 st = i.uv * _ScreenParams.xy / _ScreenParams.xy;
+			    half2 aspect_ratio = _ScreenParams / min(_ScreenParams.x, _ScreenParams.y);
+			    st *= aspect_ratio;
+			    st *= 2.;
+//			    half2 move = half2(_Time.x*cos(_Time.x*0.112)*0.03, _Time.y*sin(_Time.y*0.1)*0.02);
+			    half2 move = half2(_Time.x * 0.05, _Time.y * 0.02);
+			    st += move;
+
+			    half3 col = half3(0., 0., 0.);
 			    
-			    half2 q = half2(0.0, 0.0);
-			    q.x = fbm(p + 0.00 * time);
-			    q.y = fbm(p + half2(1.0, 1.0));
-			    half2 r = half2(0.0, 0.0);
-			    r.x = fbm(p + 1.0 * q + half2(1.7, 9.2) + 0.15 * time);
-			    r.y = fbm(p + 1.0 * q + half2(8.3, 2.8) + 0.126 * time);
-			    float f = fbm(p + r);
-			    half3 v = half3(f, f, f);
-				return half4(v, 1.0);
+			    for (int i = 0; i < 15; i++)
+			    {
+			        float f = 1. / pow(2., float(i));
+			        float x = (smooth_noise(move + st / f) * f).x;
+			        col += x;
+			    }
+			    
+			    col = col * col * col;
+			    col *= 0.33;
+			    return half4(col, 1.0);
 			}
 			ENDCG
 		}
