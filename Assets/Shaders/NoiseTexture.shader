@@ -1,4 +1,4 @@
-﻿Shader "Custom/Noise"
+﻿Shader "Custom/NoiseTexture"
 {
 	Properties
 	{

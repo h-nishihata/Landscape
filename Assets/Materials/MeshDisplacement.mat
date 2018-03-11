@@ -6,9 +6,9 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Terrain
+  m_Name: MeshDisplacement
   m_Shader: {fileID: 4800000, guid: 772b23460c7184c4cb34ad822094f53f, type: 3}
-  m_ShaderKeywords: _PARALLAX_MAP
+  m_ShaderKeywords: _PARALLAX_MAP _TESSELLATION_EDGE
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -36,6 +36,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _DetailTex:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DispTex:
+        m_Texture: {fileID: 8400000, guid: 123ab87e6d70d4e2a9b0ed40aa463698, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
@@ -66,11 +70,17 @@ Material:
         m_Texture: {fileID: 8400000, guid: 123ab87e6d70d4e2a9b0ed40aa463698, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _RampTex:
+        m_Texture: {fileID: 8400000, guid: 123ab87e6d70d4e2a9b0ed40aa463698, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
+    - _ClipRange: 0.8
     - _Cutoff: 0.5
     - _DetailBumpScale: 1
     - _DetailNormalMapScale: 1
+    - _Displacement: 1
     - _DstBlend: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
@@ -92,7 +102,9 @@ Material:
     - _WireframeWidth: 1
     - _ZWrite: 1
     m_Colors:
+    - _ChannelFactor: {r: 0.3, g: 1, b: 0.5, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Emission: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Range: {r: 0, g: 0.5, b: 0, a: 1}
     - _WireframeColor: {r: 0, g: 0, b: 0, a: 1}

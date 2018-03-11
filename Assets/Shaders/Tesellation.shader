@@ -1,5 +1,4 @@
-﻿Shader "Custom/Tessellation" {
-
+﻿Shader "Custom/Tesellation" {
 	Properties {
 		_Color ("Tint", Color) = (1, 1, 1, 1)
 		_MainTex ("Albedo", 2D) = "white" {}
