@@ -27,9 +27,6 @@ Shader "Custom/MeshDisplacement"
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
-			#pragma multi_compile_fwdbase_fullshadows
-			#pragma multi_compile_fog
-			#pragma target 3.0
 
 			#define UNITY_PASS_FORWARDBASE
 			#include "UnityCG.cginc"
@@ -103,7 +100,7 @@ Shader "Custom/MeshDisplacement"
 				 float3 attenColor = attenuation * _LightColor0.rgb;
 				 float4 finalDiffuse = float4(lightingModel * attenColor,1);
 				 UNITY_APPLY_FOG(i.fogCoord, finalDiffuse);
-				 return finalDiffuse;
+				 return float4 (dcolor, 1.0);
 			 }
 			 ENDCG
 		 }
