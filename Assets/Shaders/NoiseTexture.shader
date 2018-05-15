@@ -81,7 +81,7 @@
 			    st *= aspect_ratio;
 			    st *= 2.;
 //			    half2 move = half2(_Time.x*cos(_Time.x*0.112)*0.03, _Time.y*sin(_Time.y*0.1)*0.02);
-			    half2 move = half2(_Time.x * 0.05, _Time.y * 0.02);
+			    half2 move = half2(_Time.x * 0.01, _Time.y * 0.02);
 			    st += move;
 
 			    half3 col = half3(0., 0., 0.);
