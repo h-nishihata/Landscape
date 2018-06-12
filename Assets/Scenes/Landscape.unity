@@ -608,10 +608,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tweakMode: 1
   Threshold: 0.2
-  MasterAmount: 3
+  MasterAmount: 4
   MediumAmount: 0.3
   LargeAmount: 0.7
-  Tint: {r: 0.745283, g: 0.6385814, b: 0.41834283, a: 1}
+  Tint: {r: 0.7490196, g: 0.57254905, b: 0.40784314, a: 0.4392157}
   KernelSize: 30
   MediumKernelScale: 3
   LargeKernelScale: 5
