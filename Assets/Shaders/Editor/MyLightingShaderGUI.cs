@@ -56,8 +56,8 @@ public class MyLightingShaderGUI : ShaderGUI {
 
 	static GUIContent staticLabel = new GUIContent();
 
-	static ColorPickerHDRConfig emissionConfig =
-		new ColorPickerHDRConfig(0f, 99f, 1f / 99f, 3f);
+//	static ColorPickerHDRConfig emissionConfig =
+//		new ColorPickerHDRConfig(0f, 99f, 1f / 99f, 3f);
 
 	Material target;
 	MaterialEditor editor;
@@ -248,10 +248,10 @@ public class MyLightingShaderGUI : ShaderGUI {
 		MaterialProperty map = FindProperty("_EmissionMap");
 		Texture tex = map.textureValue;
 		EditorGUI.BeginChangeCheck();
-		editor.TexturePropertyWithHDRColor(
-			MakeLabel(map, "Emission (RGB)"), map, FindProperty("_Emission"),
-			emissionConfig, false
-		);
+		//editor.TexturePropertyWithHDRColor(
+		//	MakeLabel(map, "Emission (RGB)"), map, FindProperty("_Emission"),
+		//	emissionConfig, false
+		//);
 		editor.LightmapEmissionProperty(2);
 		if (EditorGUI.EndChangeCheck()) {
 			if (tex != map.textureValue) {

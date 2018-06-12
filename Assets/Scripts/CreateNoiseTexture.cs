@@ -9,7 +9,7 @@ public class CreateNoiseTexture : MonoBehaviour {
 	private Material mat;
 
 
-	void Start () {
+	void Awake () {
 		
 		src = new RenderTexture( 256, 256, 0 );
 		src.wrapMode = TextureWrapMode.Clamp;

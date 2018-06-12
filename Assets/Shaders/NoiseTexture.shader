@@ -84,7 +84,8 @@
 			    half2 move = half2(_Time.x * 0.01, _Time.y * 0.02);
 			    st += move;
 
-			    half3 col = half3(0., 0., 0.);
+//			    half3 col = half3(cos(_Time.x * 0.03), sin(_Time.y * 0.05), cos(_Time.x * 0.02));
+                half3 col = half3(0., 0., 0.);
 			    
 			    for (int i = 0; i < 15; i++)
 			    {
