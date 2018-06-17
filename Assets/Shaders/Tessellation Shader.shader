@@ -12,7 +12,7 @@
 		_Smoothness ("Smoothness", Range(0, 1)) = 0.1
 
 		[NoScaleOffset] _ParallaxMap ("Parallax", 2D) = "black" {}
-		_ParallaxStrength ("Parallax Strength", Range(0, 180)) = 0
+		_ParallaxStrength ("Parallax Strength", Range(0, 140)) = 0
 
 		[NoScaleOffset] _OcclusionMap ("Occlusion", 2D) = "white" {}
 		_OcclusionStrength ("Occlusion Strength", Range(0, 1)) = 1

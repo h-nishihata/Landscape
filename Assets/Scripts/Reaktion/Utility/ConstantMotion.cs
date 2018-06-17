@@ -80,6 +80,8 @@ public class ConstantMotion : MonoBehaviour
     public TransformElement position = new TransformElement();
     public TransformElement rotation = new TransformElement{ velocity = 30 };
     public bool useLocalCoordinate = true;
+    private float rotationLimit = 0.3f;
+    private bool directionChanged;
 
     void Awake()
     {
@@ -104,6 +106,22 @@ public class ConstantMotion : MonoBehaviour
                 transform.localRotation = delta * transform.localRotation;
             else
                 transform.rotation = delta * transform.rotation;
+        }
+
+        if((transform.localRotation.y > rotationLimit) ||
+           (transform.localRotation.y < rotationLimit * -1)) {
+            if (!directionChanged) {
+                rotation.velocity *= -1;
+                directionChanged = true;
+            }
+        }
+
+        if((transform.localRotation.y <= 0.01f) &&
+           (transform.localRotation.y >= -0.01f)){
+            if (directionChanged) {
+                directionChanged = false;
+                rotation.velocity = Random.Range(-4f, 4f);
+            }
         }
     }
 }
