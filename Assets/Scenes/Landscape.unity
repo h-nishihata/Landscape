@@ -5185,15 +5185,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   position:
-    mode: 2
-    velocity: 3
+    mode: 0
+    velocity: 2
     arbitraryVector: {x: 0, y: 1, z: 0}
     randomness: 0.5
   rotation:
     mode: 2
-    velocity: 2
+    velocity: -3
     arbitraryVector: {x: 0, y: 1, z: 0}
-    randomness: 0.4
+    randomness: 0.2
   useLocalCoordinate: 1
 --- !u!1 &1658525553
 GameObject:
@@ -5372,7 +5372,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1947541521
 MonoBehaviour:
   m_ObjectHideFlags: 0

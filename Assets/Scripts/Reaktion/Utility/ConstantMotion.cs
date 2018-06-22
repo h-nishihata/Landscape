@@ -80,13 +80,18 @@ public class ConstantMotion : MonoBehaviour
     public TransformElement position = new TransformElement();
     public TransformElement rotation = new TransformElement{ velocity = 30 };
     public bool useLocalCoordinate = true;
-    private float rotationLimit = 0.3f;
-    private bool directionChanged;
+    private float rotationLimit = 0.25f;
+    private bool hasReachedLimit;
+    private float startTime;
+    private float changeDirSec;
+    private float maxVelocity;
 
     void Awake()
     {
         position.Initialize();
         rotation.Initialize();
+        maxVelocity = rotation.velocity;
+        changeDirSec = Mathf.Abs(rotation.velocity);
     }
 
     void Update()
@@ -102,26 +107,37 @@ public class ConstantMotion : MonoBehaviour
         if (rotation.mode != TransformMode.Off)
         {
             var delta = Quaternion.AngleAxis(rotation.Delta, rotation.Vector);
+            
             if (useLocalCoordinate)
                 transform.localRotation = delta * transform.localRotation;
             else
-                transform.rotation = delta * transform.rotation;
+                transform.rotation = delta * transform.rotation;            
         }
 
-        if((transform.localRotation.y > rotationLimit) ||
-           (transform.localRotation.y < rotationLimit * -1)) {
-            if (!directionChanged) {
-                rotation.velocity *= -1;
-                directionChanged = true;
+
+        
+        if ((transform.localRotation.y > rotationLimit) || 
+            (transform.localRotation.y < rotationLimit * -1))
+        {
+            if (!hasReachedLimit)
+            {
+                startTime = Time.timeSinceLevelLoad;
+                hasReachedLimit = true;
             }
+        }
+
+        if (hasReachedLimit)
+        {
+            var diff = Time.timeSinceLevelLoad - startTime;           
+            var rate = diff / changeDirSec;
+            rotation.velocity = Mathf.Lerp(maxVelocity, maxVelocity * -1f, rate);
         }
 
         if((transform.localRotation.y <= 0.01f) &&
-           (transform.localRotation.y >= -0.01f)){
-            if (directionChanged) {
-                directionChanged = false;
-                rotation.velocity = Random.Range(-4f, 4f);
-            }
+           (transform.localRotation.y >= -0.01f))
+        {
+                hasReachedLimit = false;
+                maxVelocity = rotation.velocity;
         }
     }
 }
