@@ -93,6 +93,7 @@ class ConstantMotionElementDrawer : PropertyDrawer
 
             // Randomness slider.
             EditorGUI.Slider(position, property.FindPropertyRelative("randomness"), 0, 1, new GUIContent("Randomness"));
+
         }
 
         EditorGUI.EndProperty();
@@ -103,14 +104,16 @@ class ConstantMotionElementDrawer : PropertyDrawer
 public class ConstantMotionEditor : Editor
 {
     SerializedProperty propPosition;
-    SerializedProperty propRotation;
+    SerializedProperty propRotationX;
+    SerializedProperty propRotationY;
     SerializedProperty propUseLocalCoordinate;
     GUIContent labelLocalCoordinate;
 
     void OnEnable()
     {
         propPosition = serializedObject.FindProperty("position");
-        propRotation = serializedObject.FindProperty("rotation");
+        propRotationX = serializedObject.FindProperty("rotationX");
+        propRotationY = serializedObject.FindProperty("rotationY");
         propUseLocalCoordinate = serializedObject.FindProperty("useLocalCoordinate");
         labelLocalCoordinate = new GUIContent("Local Coordinate");
     }
@@ -119,7 +122,8 @@ public class ConstantMotionEditor : Editor
     {
         serializedObject.Update();
         EditorGUILayout.PropertyField(propPosition);
-        EditorGUILayout.PropertyField(propRotation);
+        EditorGUILayout.PropertyField(propRotationX);
+        EditorGUILayout.PropertyField(propRotationY);
         EditorGUILayout.PropertyField(propUseLocalCoordinate, labelLocalCoordinate);
         serializedObject.ApplyModifiedProperties();
     }
