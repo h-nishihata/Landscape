@@ -22,7 +22,7 @@ public class CreateNoiseTexture : MonoBehaviour {
 		
 		Graphics.Blit (mat.mainTexture, src, mat, 0 );
 		Graphics.Blit (src, dest, mat, 0 );
-
+        
 	}
 
 }

@@ -35,7 +35,7 @@ namespace Reaktion {
             {
                 randomVector = Random.onUnitSphere;
                 randomScalar = Random.value;
-                limit = mode == TransformMode.XAxis ? 0.35f : 0.25f;
+                limit = mode == TransformMode.XAxis ? 0.38f : 0.18f;
                 changeDirSec = Mathf.Abs(velocity);
                 maxVelocity = velocity;
             }
@@ -113,7 +113,7 @@ namespace Reaktion {
         private void CheckRotateLimit(TransformElement element, float rotAngle)
         {            
             var rotLimit = element.limit;
-            var offset = element.mode == TransformMode.XAxis ? -0.1f : -1f;
+            var offset = element.mode == TransformMode.XAxis ? -0.08f : -1f;
 
             if ((rotAngle > rotLimit) || (rotAngle < rotLimit * offset))
             {

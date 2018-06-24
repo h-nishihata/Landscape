@@ -80,13 +80,14 @@
 			    half2 aspect_ratio = _ScreenParams / min(_ScreenParams.x, _ScreenParams.y);
 			    st *= aspect_ratio;
 			    st *= 2.;
-//			    half2 move = half2(_Time.x*cos(_Time.x*0.112)*0.03, _Time.y*sin(_Time.y*0.1)*0.02);
 			    half2 move = half2(0, _Time.y * 0.03);
 			    st += move;
 
-//			    half3 col = half3(cos(_Time.x * 0.03), sin(_Time.y * 0.05), cos(_Time.x * 0.02));
-                half3 col = half3(0., 0., 0.);
-			    
+                float r = lerp(0, 0.16, cos(_Time.x) + 1.0);
+                float g = lerp(0, 0.16, cos(_Time.x + PI * 0.5) + 1.0);
+                float b = lerp(0, 0.19, cos(_Time.x + PI * 0.8) + 1.0);
+                half3 col = half3(r, g, b);
+
 			    for (int i = 0; i < 15; i++)
 			    {
 			        float f = 1. / pow(2., float(i));
