@@ -8,7 +8,7 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: Tessellation
   m_Shader: {fileID: 4800000, guid: 772b23460c7184c4cb34ad822094f53f, type: 3}
-  m_ShaderKeywords: _PARALLAX_MAP _TESSELLATION_EDGE
+  m_ShaderKeywords: _PARALLAX_MAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -79,7 +79,7 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _ParallaxStrength: 90
+    - _ParallaxStrength: 120
     - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1

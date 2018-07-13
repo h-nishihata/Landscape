@@ -23,7 +23,9 @@ public class OSCController : MonoBehaviour {
 	void Update () {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            handler.SendMessageToClient("Max", "/test", "Hello World");
+            handler.SendMessageToClient("Max", "/carrier", 73);
+            handler.SendMessageToClient("Max", "/modulator", 54);
+            handler.SendMessageToClient("Max", "/index", 10000);
         }
 
 		if(reciever.hasWaitingMessages()){

@@ -113,7 +113,7 @@ namespace Reaktion {
         private void CheckRotateLimit(TransformElement element, float rotAngle)
         {            
             var rotLimit = element.limit;
-            var offset = element.mode == TransformMode.XAxis ? -0.08f : -1f;
+            var offset = element.mode == TransformMode.XAxis ? 0.5f : -1f;
 
             if ((rotAngle > rotLimit) || (rotAngle < rotLimit * offset))
             {
@@ -131,7 +131,8 @@ namespace Reaktion {
                 element.velocity = Mathf.Lerp(element.maxVelocity, element.maxVelocity * -1f, rate);
             }
 
-            if ((rotAngle <= 0.01f) && (rotAngle >= -0.01f))
+            var resetPos = element.mode == TransformMode.XAxis ? 0.28f : 0;
+            if ((rotAngle <= resetPos + 0.01f) && (rotAngle >= resetPos - 0.01f))
             {
                 element.hasReachedLimit = false;
                 element.maxVelocity = element.velocity;
