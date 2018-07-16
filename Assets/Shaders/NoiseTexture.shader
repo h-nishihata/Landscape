@@ -96,8 +96,9 @@
 			    }
 			    
 			    col = col * col * col;
-			    col *= 0.2;
+			    col *= 0.19;
 			    return half4(col, 1.0);
+                // return fixed4 (st, 0, 0);
 			}
 			ENDCG
 		}

@@ -7,7 +7,7 @@ public class TransferObject : MonoBehaviour {
     public GameObject startPosition;
     public GameObject endPosition;
     float startTime;
-    float translateTime = 60.0f;
+    float translateTime = 70.0f;
     Material mat;
     Color tintColor;
     Color targetColor;
