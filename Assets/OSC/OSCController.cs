@@ -21,23 +21,20 @@ public class OSCController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(reciever.hasWaitingMessages()){
+		if(reciever.hasWaitingMessages()) {
 			OSCMessage msg = reciever.getNextMessage();
 			Debug.Log(string.Format("message received: {0} {1}", msg.Address, DataToString(msg.Data)));
 		}
 	}
 	
-    public void SendMessages(float carrier, float modulation, float index){
-        handler.SendMessageToClient("Max", "/carrier", carrier);
-        handler.SendMessageToClient("Max", "/modulation", modulation);
-        handler.SendMessageToClient("Max", "/index", index);
+    public void SendMessages(string address, float value) {
+        handler.SendMessageToClient("Max", address, value);
     }
 
     private string DataToString(List<object> data) {
 		string buffer = "";
 		
-		for(int i = 0; i < data.Count; i++)
-		{
+		for(int i = 0; i < data.Count; i++) {
 			buffer += data[i].ToString() + " ";
 		}
 		
