@@ -140,7 +140,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96eeb9408a85646b0b0568481133bc0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  port: 6666
+  address: 192.168.1.3
+  sendPort: 7400
+  receivePort: 6666
 --- !u!4 &219965716
 Transform:
   m_ObjectHideFlags: 0
@@ -283,7 +285,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &532734846
 Transform:
   m_ObjectHideFlags: 0

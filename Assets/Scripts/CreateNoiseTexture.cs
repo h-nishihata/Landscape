@@ -8,8 +8,8 @@ public class CreateNoiseTexture : MonoBehaviour {
 	public RenderTexture dest;
 	private Material mat;
 
-    private float[] timeout = new float[3];
-    private float[] elapsedTime = new float[3];
+    private float[] timeout = new float[2];
+    private float[] elapsedTime = new float[2];
 
     private Texture2D tempTex;
     private Rect clippingBox;
@@ -30,7 +30,7 @@ public class CreateNoiseTexture : MonoBehaviour {
 		Graphics.Blit (mat.mainTexture, src, mat, 0);
 		Graphics.Blit (src, dest, mat, 0 );
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 2; i++) {
             elapsedTime[i] += Time.deltaTime;
 
             if (elapsedTime[i] >= timeout[i]) {
@@ -60,9 +60,9 @@ public class CreateNoiseTexture : MonoBehaviour {
             case 1:
                 oscController.SendMessages("/modulator", col[index].g);
                 break;
-            case 2:
-                oscController.SendMessages("/index", col[index].b);
-                break;
+            //case 2:
+                //oscController.SendMessages("/index", col[index].b);
+                //break;
         }
 
         elapsedTime[msgType] = 0f;

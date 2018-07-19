@@ -7,16 +7,18 @@ public class OSCController : MonoBehaviour {
 
     private OSCHandler handler;
 	private OSCReciever reciever;
-	public int port = 6666;
+    public string address = "172.16.202.207";
+	public int sendPort = 7400;
+    public int receivePort = 6666;
 	
 	// Use this for initialization
 	void Start () {
         handler = OSCHandler.Instance;
-        handler.Init();
+        handler.Init("Max", address, sendPort);
         handler.transform.SetParent(gameObject.transform);
 
 		reciever = new OSCReciever();
-		reciever.Open(port);
+		reciever.Open(receivePort);
 	}
 	
 	// Update is called once per frame

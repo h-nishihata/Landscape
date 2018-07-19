@@ -92,10 +92,10 @@ public class OSCHandler : MonoBehaviour
 	/// Initializes the OSC Handler.
 	/// Here you can create the OSC servers and clientes.
 	/// </summary>
-	public void Init()
+    public void Init(string clientId, string address, int port)
 	{
         //Initialize OSC clients (transmitters)
-        CreateClient("Max", IPAddress.Parse("172.16.202.207"/*192.168.1.3*/), 7400);
+        CreateClient(clientId, IPAddress.Parse(address), port);
 
         //Initialize OSC servers (listeners)
         //CreateServer("Max", 6666);
