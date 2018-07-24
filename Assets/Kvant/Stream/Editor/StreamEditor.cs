@@ -93,7 +93,7 @@ namespace Kvant
             EditorGUILayout.Space();
 
             EditorGUILayout.PropertyField(_color);
-            EditorGUILayout.Slider(_tail, 0.0f, 20.0f);
+            EditorGUILayout.Slider(_tail, 0.0f, 200.0f);
             EditorGUILayout.PropertyField(_randomSeed);
             EditorGUILayout.PropertyField(_debug);
 

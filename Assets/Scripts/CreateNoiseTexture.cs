@@ -34,7 +34,7 @@ public class CreateNoiseTexture : MonoBehaviour {
             elapsedTime[i] += Time.deltaTime;
 
             if (elapsedTime[i] >= timeout[i]) {
-                AnalyzePixels(i);
+                //AnalyzePixels(i);
             }
         }
 	}
