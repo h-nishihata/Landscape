@@ -33,7 +33,7 @@
 			sampler2D _MainTex;
 			float4 _MainTex_ST;
 
-			#define PI 3.14159265358979323846
+			#define PI 3.1415926
 
 			half3 c_scale(float i)
 			{
@@ -83,9 +83,9 @@
 			    half2 move = half2(0, _Time.y * 0.03);
 			    st += move;
 
-                float r = lerp(0, 0.16, cos(_Time.x) + 1.0);
-                float g = lerp(0, 0.16, cos(_Time.x + PI * 0.5) + 1.0);
-                float b = lerp(0, 0.19, cos(_Time.x + PI * 0.8) + 1.0);
+                float r = lerp(0, 0.16, sin(_Time.x) + 1.0);
+                float g = lerp(0, 0.16, cos(_Time.x + PI * sin(_Time.x * 0.1 + PI * 0.1)) + 1.0);
+                float b = lerp(0, 0.19, sin(_Time.x + PI * cos(_Time.x * 0.4 + PI * 0.8)) + 1.0);
                 half3 col = half3(r, g, b);
 
 			    for (int i = 0; i < 15; i++)

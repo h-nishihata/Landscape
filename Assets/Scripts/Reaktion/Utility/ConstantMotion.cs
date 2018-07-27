@@ -35,7 +35,7 @@ namespace Reaktion {
             {
                 randomVector = Random.onUnitSphere;
                 randomScalar = Random.value;
-                limit = mode == TransformMode.XAxis ? 0.38f : 0.14f;
+                limit = mode == TransformMode.XAxis ? 0.38f : 0.12f;
                 changeDirSec = Mathf.Abs(velocity);
                 maxVelocity = velocity;
             }
