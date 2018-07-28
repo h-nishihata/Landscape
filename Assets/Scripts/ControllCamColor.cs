@@ -13,6 +13,7 @@ public class ControllCamColor : MonoBehaviour {
     private VideoBloom bloom;
     private Color tintColor;
     private Color normalColor;
+    public Kvant.Stream stream;
 
 
 	void Start () {
@@ -50,8 +51,10 @@ public class ControllCamColor : MonoBehaviour {
             if (isClimax) {                
                 tintColor = Color.Lerp(normalColor, Color.white, rate);
                 //baseCam.backgroundColor = Color.Lerp(Color.black, Color.white, rate);
+                stream.noiseAmplitude = Mathf.Lerp(10f, 50f, rate);
             }else{
                 tintColor = Color.Lerp(Color.white, normalColor, rate);
+                stream.noiseAmplitude = Mathf.Lerp(50f, 10f, rate);
             }
             bloom.Tint = tintColor;
         }
