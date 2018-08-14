@@ -23,6 +23,7 @@ public class ControllCamColor : MonoBehaviour {
 	}
 
     public void ControlTransition(int type){
+        Debug.Log("control transition");
         switch (type)
         {
             case 0:

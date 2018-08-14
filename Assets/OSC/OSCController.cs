@@ -37,6 +37,7 @@ public class OSCController : MonoBehaviour {
     }
 
     private void ReceiveMessages(List<object> data) {
+        Debug.Log("received msgs");
 		for(int i = 0; i < data.Count; i++) {
             int num;
             bool b = int.TryParse(data[i].ToString(), out num);

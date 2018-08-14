@@ -84,8 +84,8 @@
 			    st += move;
 
                 float r = lerp(0, 0.16, sin(_Time.x) + 1.0);
-                float g = lerp(0, 0.16, cos(_Time.x + PI * sin(_Time.x * 0.1 + PI * 0.1)) + 1.0);
-                float b = lerp(0, 0.19, sin(_Time.x + PI * cos(_Time.x * 0.4 + PI * 0.8)) + 1.0);
+                float g = lerp(0, 0.16, cos(_Time.x + PI * sin(_Time.x * 0.1 + PI * 0.4)) + 1.0);
+                float b = lerp(0, 0.19, sin(_Time.x + PI * cos(_Time.x * 0.4 + PI * 0.6)) + 1.0);
                 half3 col = half3(r, g, b);
 
 			    for (int i = 0; i < 15; i++)
